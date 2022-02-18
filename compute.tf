@@ -1,3 +1,5 @@
+### Public IP 붙이는 방법 확인할 것 ### 
+
 ###### Server ######
 
 resource "ncloud_login_key" "loginkey" {
