@@ -1,4 +1,4 @@
-###### Provider Information ######
+######## Version ########
 
 terraform {
   required_providers {
@@ -9,7 +9,8 @@ terraform {
   required_version = ">= 0.13"
 }
 
-// Configure the ncloud provider
+######## Provider ########
+
 provider "ncloud" {
   #access_key  = var.access_key
   #secret_key  = var.secret_key
