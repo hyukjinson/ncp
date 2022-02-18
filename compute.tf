@@ -8,11 +8,11 @@ resource "ncloud_server" "server" {
   subnet_no                 = ncloud_subnet.pub-sbn-shared.id
   name                      = "bastion-lnx-svr"
   server_image_product_code = "SW.VSVR.OS.LNX64.CNTOS.0708.B050"
-  login_key_name            = ncloud_login_key.lgcns.key_name
+  login_key_name            = ncloud_login_key.loginkey.key_name
 }
 
 data "ncloud_server_product" "product" {
-  server_image_product_code = "SPSW0LINUX000032"  // Search by 'CentOS 7.3 (64-bit)' image classic
+  server_image_product_code = "SW.VSVR.OS.LNX64.CNTOS.0708.B050"
 
   filter {
     name   = "product_code"
