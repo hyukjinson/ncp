@@ -13,14 +13,14 @@ resource "ncloud_vpc" "prd-vpc" {
 
 ######## Subnet ########
 
-resource "ncloud_subnet" "pub-sbn-share" {
+resource "ncloud_subnet" "pub-sbn-shared" {
   vpc_no         = ncloud_vpc.shared-vpc.id
   subnet         = "10.0.1.0/24"
   zone           = "KR-1"
   network_acl_no = ncloud_vpc.shared-vpc.default_network_acl_no
   subnet_type    = "PUBLIC"
   // below fields is optional
-  name           = "shared-sbn-prd"
+  name           = "pub-sbn-shared"
   usage_type     = "GEN"
 }
 
