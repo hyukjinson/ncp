@@ -103,3 +103,29 @@ resource "ncloud_vpc_peering" "prd-to-shared" {
   source_vpc_no = ncloud_vpc.prd-vpc.id
   target_vpc_no = ncloud_vpc.shared-vpc.id
 }
+
+###### Route Table ######
+
+resource "ncloud_route" "shared-to-prd" {
+  route_table_no         = ncloud_route_table.shared-vpc-default-public-table.id
+  destination_cidr_block = "172.16.0.0/16"
+  target_type            = "VPCPEERING"  // NATGW (NAT Gateway) | VPCPEERING (VPC Peering) | VGW (Virtual Private Gateway).
+  target_name            = ncloud_nat_gateway.shared-to-prd.name
+  target_no              = ncloud_nat_gateway.shared-to-prd.id
+}
+
+resource "ncloud_route" "prd-to-shared" {
+  route_table_no         = ncloud_route_table.prd-vpc-default-private-table.id
+  destination_cidr_block = "10.0.0.0/16"
+  target_type            = "VPCPEERING"  // NATGW (NAT Gateway) | VPCPEERING (VPC Peering) | VGW (Virtual Private Gateway).
+  target_name            = ncloud_nat_gateway.prd-to-shared.name
+  target_no              = ncloud_nat_gateway.prd-to-shared.id
+}
+
+resource "ncloud_route" "private-to-internet" {
+  route_table_no         = ncloud_route_table.prd-vpc-default-private-table.id
+  destination_cidr_block = "0.0.0.0/0"
+  target_type            = "NATGW"  // NATGW (NAT Gateway) | VPCPEERING (VPC Peering) | VGW (Virtual Private Gateway).
+  target_name            = ncloud_nat_gateway.nat-gw.name
+  target_no              = ncloud_nat_gateway.nat-gw.id
+}
