@@ -9,7 +9,7 @@ data "ncloud_nks_versions" "version" {
 }
 
 resource "ncloud_login_key" "loginkey" {
-  key_name = "sample-login-key"
+  key_name = "lgcns"
 }
 
 resource "ncloud_nks_cluster" "cluster" {
