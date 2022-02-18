@@ -5,7 +5,7 @@ resource "ncloud_login_key" "loginkey" {
 }
 
 resource "ncloud_server" "server" {
-  subnet_no                 = ncloud_subnet.public-sbn-shared.id
+  subnet_no                 = ncloud_subnet.pub-sbn-shared.id
   name                      = "bastion-lnx-svr"
   server_image_product_code = "SW.VSVR.OS.LNX64.CNTOS.0708.B050"
   login_key_name            = ncloud_login_key.lgcns.key_name
