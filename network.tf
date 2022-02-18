@@ -1,3 +1,5 @@
+### Route Table 확인할 것 ### 
+
 ######## VPC ########
 
 resource "ncloud_vpc" "shared-vpc" {
